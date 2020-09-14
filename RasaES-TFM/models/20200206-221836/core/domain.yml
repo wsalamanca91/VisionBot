@@ -1,0 +1,113 @@
+actions:
+- action_your_num
+- utter_change_settings
+- utter_cheer_up
+- utter_did_that_help
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+- utter_name
+- utter_num_confirm
+- utter_num_verify
+- utter_solution
+- utter_solution_4G
+- utter_tell_issue
+- utter_what_handset
+- utter_your_num
+config:
+  store_entities_as_slots: true
+entities:
+- BRAND
+- NAME
+- NETWORK
+forms: []
+intents:
+- thanks:
+    ignore_entities: []
+    use_entities: true
+- my_name_is:
+    ignore_entities: []
+    use_entities: true
+- affirm:
+    ignore_entities: []
+    use_entities: true
+- facing_issue:
+    ignore_entities: []
+    use_entities: true
+- network_issue:
+    ignore_entities: []
+    use_entities: true
+- headset:
+    ignore_entities: []
+    use_entities: true
+- guide_me:
+    ignore_entities: []
+    use_entities: true
+- greet:
+    ignore_entities: []
+    use_entities: true
+- goodbye:
+    ignore_entities: []
+    use_entities: true
+- deny:
+    ignore_entities: []
+    use_entities: true
+- mood_great:
+    ignore_entities: []
+    use_entities: true
+- mood_unhappy:
+    ignore_entities: []
+    use_entities: true
+- bot_challenge:
+    ignore_entities: []
+    use_entities: true
+- have_to_do:
+    ignore_entities: []
+    use_entities: true
+slots:
+  BRAND:
+    auto_fill: true
+    initial_value: null
+    type: rasa.core.slots.TextSlot
+  NAME:
+    auto_fill: true
+    initial_value: null
+    type: rasa.core.slots.TextSlot
+templates:
+  utter_change_settings:
+  - text: I would like to tell you, sir, that you need to change certain settings
+      of your phone because there is no issue from our end.
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: Hello! How may I assist you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_name:
+  - text: Ok. Please provide your fist name?
+  utter_num_confirm:
+  - text: Is this the same mobile number on which you are facing network issues?
+  utter_num_verify:
+  - text: Could you please confirm me your mobile number?
+  utter_solution:
+  - text: Sure sir, I will guide you for that. Go to your settings, select network,
+      and select 3G if you’ve chosen 4G because your sim is not supporting 4G. That’s
+      why you are facing problems while calling.
+  utter_solution_4G:
+  - text: Please visit your nearest store. They will provide you the 4G sim for the
+      same.
+  utter_tell_issue:
+  - text: Yes sir, tell me what issues you are facing?
+  utter_what_handset:
+  - text: Sir, I would like to tell you that your issues will be resolved. Could I
+      please know which handset you are using?
+  utter_your_num:
+  - text: Your number is {number}?

@@ -1,0 +1,1 @@
+{"0": "afirmar", "1": "bot_challenge", "2": "despedirse", "3": "gracias", "4": "guide_me", "5": "mood_great", "6": "mood_unhappy", "7": "negar", "8": "posicion_del_objeto", "9": "saludar"}

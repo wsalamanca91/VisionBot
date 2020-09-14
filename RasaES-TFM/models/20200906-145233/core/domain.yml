@@ -1,0 +1,63 @@
+actions:
+- utter_despedirse
+- utter_did_that_help
+- utter_saludar
+- utter_happy
+- utter_solution
+- utter_iamabot
+- utter_thanks
+- utter_anything_else
+- utter_posicion_del_objeto
+config:
+  store_entities_as_slots: true
+entities:
+- posicion
+forms: []
+intents:
+- posicion_del_objeto:
+    use_entities: true
+- guide_me:
+    use_entities: true
+- gracias:
+    use_entities: true
+- saludar:
+    use_entities: true
+- despedirse:
+    use_entities: true
+- afirmar:
+    use_entities: true
+- negar:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+responses:
+  utter_anything_else:
+  - text: ¿Hay algo más en lo que pueda ayudarte?
+  utter_despedirse:
+  - text: adios
+  utter_did_that_help:
+  - text: ¿Eso te ayudó?
+  utter_happy:
+  - text: Genial.
+  utter_iamabot:
+  - text: Soy un bot, impulsado por Rasa.
+  utter_posicion_del_objeto:
+  - text: Ya le valido que hay en el sitio donde me estas indicando.
+  utter_saludar:
+  - text: ¡Hola! Seré tu ayudante visual. ¿Cómo puedo ayudarte?
+  utter_solution:
+  - text: Con tu móvil en vertical puedes consultarme que hay delante de ti.
+  utter_thanks:
+  - text: gracias
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 0
+slots:
+  posicion:
+    auto_fill: true
+    initial_value: null
+    type: rasa.core.slots.UnfeaturizedSlot

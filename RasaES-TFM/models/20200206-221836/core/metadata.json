@@ -1,0 +1,35 @@
+{
+  "action_fingerprints": {
+    "action_listen": {
+      "slots": [
+        "BRAND",
+        "NAME"
+      ]
+    },
+    "utter_iamabot": {
+      "slots": []
+    },
+    "utter_greet": {
+      "slots": []
+    },
+    "utter_goodbye": {
+      "slots": []
+    }
+  },
+  "python": "3.6.9",
+  "max_histories": [
+    5,
+    5,
+    null
+  ],
+  "ensemble_name": "rasa.core.policies.ensemble.SimplePolicyEnsemble",
+  "policy_names": [
+    "rasa.core.policies.memoization.MemoizationPolicy",
+    "rasa.core.policies.keras_policy.KerasPolicy",
+    "rasa.core.policies.mapping_policy.MappingPolicy"
+  ],
+  "trained_at": "20200206-221825",
+  "rasa": "1.5.3",
+  "tensorflow": "1.15.0",
+  "sklearn": "0.20.4"
+}

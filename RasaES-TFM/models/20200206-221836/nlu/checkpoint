@@ -1,0 +1,2 @@
+model_checkpoint_path: "/tmp/tmpis0adz63/nlu/component_6_EmbeddingIntentClassifier.ckpt"
+all_model_checkpoint_paths: "/tmp/tmpis0adz63/nlu/component_6_EmbeddingIntentClassifier.ckpt"

@@ -1,0 +1,33 @@
+actions:
+- utter_despedirse
+- utter_saludar
+- utter_solution
+- utter_iamabot
+- utter_anything_else
+- utter_posicion_del_objeto
+- action_objeto_posicion
+
+entities:
+- posicion
+
+intents:
+- posicion_del_objeto
+- saludar
+- despedirse
+- afirmar
+- negar
+
+slots:
+  posicion:
+    type: unfeaturized
+    
+templates:
+  utter_despedirse:
+  - text: adiós
+  utter_saludar:
+  - text: ¡Hola! Seré tu ayudante visual. ¿Cómo puedo ayudarte?
+  utter_iamabot:
+  - text: Soy un bot, impulsado por Rasa.
+
+
+
