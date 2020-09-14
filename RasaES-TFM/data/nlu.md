@@ -13,47 +13,52 @@
 - [izquierda](posicion)
 
 - ¿que hay [arriba](posicion)?
-- ¿que objetos encuentro a mi [arriba](posicion)?
-- ¿tengo algo a mi [arriba](posicion)?
-- ¿qué tengo a mi [arriba](posicion)?
+- ¿que objetos encuentro [arriba](posicion)?
+- ¿tengo algo [arriba](posicion)?
+- ¿qué tengo [arriba](posicion)?
 - [arriba](posicion)
 
 - ¿que hay [arriba a la izquierda](posicion)?
-- ¿que objetos encuentro a mi [arriba a la izquierda](posicion)?
-- ¿tengo algo a mi [arriba a la izquierda](posicion)?
-- ¿qué tengo a mi [arriba a la izquierda](posicion)?
+- ¿que objetos encuentro [arriba a la izquierda](posicion)?
+- ¿tengo algo [arriba a la izquierda](posicion)?
+- ¿qué tengo [arriba a la izquierda](posicion)?
 - [arriba a la izquierda](posicion)
 
 - ¿que hay [arriba a la derecha](posicion)?
-- ¿que objetos encuentro a mi [arriba a la derecha](posicion)?
-- ¿tengo algo a mi [arriba a la derecha](posicion)?
-- ¿qué tengo a mi [arriba a la derecha](posicion)?
+- ¿que objetos encuentro [arriba a la derecha](posicion)?
+- ¿tengo algo [arriba a la derecha](posicion)?
+- ¿qué tengo [arriba a la derecha](posicion)?
 - [arriba a la derecha](posicion)
 
 - ¿que hay [abajo a la izquierda](posicion)?
-- ¿que objetos encuentro a mi [abajo a la izquierda](posicion)?
-- ¿tengo algo a mi [abajo a la izquierda](posicion)?
-- ¿qué tengo a mi [abajo a la izquierda](posicion)?
+- ¿que objetos encuentro [abajo a la izquierda](posicion)?
+- ¿tengo algo [abajo a la izquierda](posicion)?
+- ¿qué tengo [abajo a la izquierda](posicion)?
 - [abajo a la izquierda](posicion)
 
 - ¿que hay [abajo a la derecha](posicion)?
-- ¿que objetos encuentro a mi [abajo a la derecha](posicion)?
-- ¿tengo algo a mi [abajo a la derecha](posicion)?
-- ¿qué tengo a mi [abajo a la derecha](posicion)?
+- ¿que objetos encuentro [abajo a la derecha](posicion)?
+- ¿tengo algo [abajo a la derecha](posicion)?
+- ¿qué tengo [abajo a la derecha](posicion)?
 - [abajo a la derecha](posicion)
 
-- ¿que hay a mi [abajo](posicion)?
-- ¿que objetos encuentro a mi [abajo](posicion)?
-- ¿tengo algo a mi [abajo](posicion)?
-- ¿qué tengo a mi [abajo](posicion)?
+- ¿que hay [abajo](posicion)?
+- ¿que objetos encuentro [abajo](posicion)?
+- ¿tengo algo [abajo](posicion)?
+- ¿qué tengo [abajo](posicion)?
 - [abajo](posicion)
 
-- ¿que hay a mi [en frente](posicion)?
-- ¿que objetos encuentro a mi [en frente](posicion)?
-- ¿tengo algo a mi [en frente](posicion)?
-- ¿qué tengo a mi [en frente](posicion)?
-- [en frente](posicion)
+- ¿que hay [enfrente](posicion)?
+- ¿que objetos encuentro [enfrente](posicion)?
+- ¿tengo algo [enfrente](posicion)?
+- ¿qué tengo [enfrente](posicion)?
+- [enfrente](posicion)
 
+- ¿que hay [delante](posicion)?
+- ¿que objetos encuentro [delante](posicion)?
+- ¿tengo algo [delante](posicion)?
+- ¿qué tengo [delante](posicion)?
+- [delante](posicion)
 
 ## intent: saludar
 - Oye

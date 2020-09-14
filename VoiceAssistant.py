@@ -140,20 +140,20 @@ def parametro_a_diccionario(x_max,y_max,boxes_imagen):
         elif x_med<ref_izq:
             pos_x="izquierda"
         else:
-            pos_x="en frente"
+            pos_x="enfrente"
 
         if y_med>ref_abajo:
             pos_y="abajo"
         elif y_med<ref_arriba:
             pos_y="arriba"
         else:
-            pos_y="en frente"
+            pos_y="enfrente"
 
-        if pos_x=="en frente" and pos_y!="en frente":
+        if pos_x=="enfrente" and pos_y!="enfrente":
             posicion=pos_y
-        elif pos_y=="en frente" and pos_x!="en frente":
+        elif pos_y=="enfrente" and pos_x!="enfrente":
             posicion=pos_x
-        elif pos_y=="en frente" and pos_x=="en frente":
+        elif pos_y=="enfrente" and pos_x=="enfrente":
             posicion=pos_x
         else:
             posicion=pos_y+" a la "+pos_x
