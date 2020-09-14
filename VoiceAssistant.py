@@ -27,7 +27,7 @@ from PIL import Image
 RASA_MODEL_URL = 'http://localhost:5002/webhooks/rest/webhook'
 RETINA_NET_MODEL_URL = "/home/wilson/Documentos/TFM/retinaNet/Libraries/resnet50_csv_50.h5"
 LABELS_URL = "/home/wilson/Documentos/TFM/VisionBot/files/categorias_catdef_todas.csv"
-API_PREDICT = "https://aac8774766a9.ngrok.io/predict"
+API_PREDICT = "https://a280a3a41a66.ngrok.io/predict"
 IMAGE_LOCATION = "/home/wilson/Documentos/TFM/VisionBot/TestImage.jpg"
 
 def predictAPI(image):    
@@ -100,6 +100,7 @@ def handleAnswer(engine, bot_message):
 
 def processVoice(r, source, message):
     print("Di algo :")
+    r.adjust_for_ambient_noise(source)
     audio = r.listen(source)  # listen to the source
     try:
         message = r.recognize_google(audio, language = 'es-ES')  # use recognizer to convert our audio into text part.
@@ -168,11 +169,23 @@ def createAnswer(items, position, labels_to_names):
     objectsString = getStringObjects(objects, labels_to_names)
     if position is None:
         output = "La posición {} no se encuentra en las posibilidades".format(posicion)
-    if position=="derecha" or position=="izquierda":
+    elif position == "delante":
+        objects = getAllObjects(items)
+        objectsString = getStringObjects(objects, labels_to_names)
+        answer = "{} tienes {}".format(position, objectsString)
+    elif position=="derecha" or position=="izquierda":
         answer = "A la {} encontramos {}".format(position, objectsString)
+    elif ((len(position) > 15) or 'adiós' in position or 'gracias' in position or 'hasta luego' in position or 'nos vemos' in position):
+        return position
     else:
         answer = "{} encontramos {}".format(position,objectsString)
     return answer
+
+def getAllObjects(items):
+    listObjects = list()
+    for key in items:
+        listObjects.extend(items[key])
+    return listObjects
 
 def getStringObjects(objects, labels_to_names):
     if(objects == None):
@@ -182,7 +195,7 @@ def getStringObjects(objects, labels_to_names):
     for key in countObjects:
         item = labels_to_names.get(key)
         count = countObjects[key]
-        stringObjects = stringObjects + "{} {}".format(count,getPluralOrSingular(item, count))
+        stringObjects = stringObjects + " {} {}, ".format(count,getPluralOrSingular(item, count))
         print(key, ":", countObjects[key])
     return stringObjects
 
