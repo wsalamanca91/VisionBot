@@ -60,6 +60,10 @@
 - ¿qué tengo [delante](posicion)?
 - [delante](posicion)
 
+- ¿De qué [color](posicion)?
+- ¿Cuál es el [color](posicion)?
+- [color](posicion)
+
 ## intent: saludar
 - Oye
 - buenas
