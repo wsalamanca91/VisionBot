@@ -23,17 +23,17 @@ import base64
 import json
 from json import JSONEncoder
 from PIL import Image
-from palomita import palomita
+from deteccion_colores import deteccion_colores
 
 RASA_MODEL_URL = 'http://localhost:5002/webhooks/rest/webhook'
 RETINA_NET_MODEL_URL = "/home/wilson/Documentos/TFM/retinaNet/Libraries/resnet50_csv_50.h5"
-LABELS_URL = "/home/wilson/Documentos/TFM/VisionBot/files/categorias_catdef_todas.csv" ### cambbiar
+LABELS_URL = "E:/tfm/VisionBot/files/categorias_catdef_todas.csv" ### cambbiar
 API_PREDICT = "http://8e19e885ce00.ngrok.io/predict"
-IMAGE_LOCATION = "/home/wilson/Documentos/TFM/VisionBot/TestImage.jpg"
-IMAGE_LOCATION_cropped = "/home/wilson/Documentos/TFM/VisionBot/TestImage_crop.jpg"
+IMAGE_LOCATION = "E:/tfm/VisionBot/TestImage.jpg"
+IMAGE_LOCATION_cropped = "E:/tfm/VisionBot/TestImage_crop.jpg"
 
 def predictAPI(image):    
-    print(str(type(image)))
+    
     cv2.imwrite( IMAGE_LOCATION, image)
     img = cv2.imread(IMAGE_LOCATION)
     _, img_encoded = cv2.imencode('.jpg', img)
@@ -85,7 +85,7 @@ def audioProcess(ns, event):
             continue
         imageToPredict = ns.value
         response = predictAPI(imageToPredict)
-        print('Esta es la respuesta',response) ### lista de listas (bbox, clase)
+        
         ##Esta es la respuesta [[[47.659103, 80.125465, 399.75, 299.625], 0], [[30.09109, 113.20477, 115.872734, 195.23914], 0]]
         
         ###Paloma colores
@@ -99,7 +99,7 @@ def audioProcess(ns, event):
         for key in objects:
             objectsBoxes[key] = [x[1] for x in objects.get(key)]
             objects[key] = [x[0] for x in objects.get(key)]
-        print(objects)
+        
         for i in r.json():
             bot_message = i['text']
         answer, newResponse = createAnswer(objects, bot_message,labels_to_names,lastResponse, lastPosition) ## me falta xq no sé que tiene.
@@ -180,7 +180,7 @@ def parametro_a_diccionario(x_max,y_max,boxes_imagen):
     return images
 
 def createAnswer(items, position, labels_to_names, lastResponse, lastPosition):
-    print(items)
+    
     answer = "No entiendo tu pregunta"
     objects = items.get(position)
     objectsString = getStringObjects(objects, labels_to_names)
@@ -218,7 +218,7 @@ def getStringColors(objects):
     for respuesta in objects:
         crop_im = crop_image(IMAGE_LOCATION,respuesta)
         crop_im.save( IMAGE_LOCATION_cropped)
-        color = palomita().color_mayoritario(IMAGE_LOCATION_cropped) ### Falta revisar!!! paloma mete un path, nosotros ya la matriz!!!!!
+        color = deteccion_colores().color_mayoritario(IMAGE_LOCATION_cropped) ### Falta revisar!!! paloma mete un path, nosotros ya la matriz!!!!!
         colores = colores + "{} , ".format(color)
     return colores
 
