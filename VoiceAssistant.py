@@ -23,12 +23,14 @@ import base64
 import json
 from json import JSONEncoder
 from PIL import Image
+from palomita import palomita
 
 RASA_MODEL_URL = 'http://localhost:5002/webhooks/rest/webhook'
 RETINA_NET_MODEL_URL = "/home/wilson/Documentos/TFM/retinaNet/Libraries/resnet50_csv_50.h5"
-LABELS_URL = "/home/wilson/Documentos/TFM/VisionBot/files/categorias_catdef_todas.csv"
-API_PREDICT = "https://a280a3a41a66.ngrok.io/predict"
-IMAGE_LOCATION = "/home/wilson/Documentos/TFM/VisionBot/TestImage.jpg"
+LABELS_URL = "E:/tfm/VisionBot/files/categorias_catdef_todas.csv" ### cambbiar
+API_PREDICT = "https://6de32b35ba4d.ngrok.io/predict"
+IMAGE_LOCATION = "E:/tfm/VisionBot//TestImage.jpg"
+IMAGE_LOCATION_cropped = "E:/tfm/VisionBot//TestImage_crop.jpg"
 
 def predictAPI(image):    
     print(str(type(image)))
@@ -81,15 +83,29 @@ def audioProcess(ns, event):
             continue
         imageToPredict = ns.value
         response = predictAPI(imageToPredict)
-        print(response)
+        print('Esta es la respuesta',response) ### lista de listas (bbox, clase)
+        ##Esta es la respuesta [[[47.659103, 80.125465, 399.75, 299.625], 0], [[30.09109, 113.20477, 115.872734, 195.23914], 0]]
+        new_response=[]
+        for respuesta in response:
+            crop_im = crop_image(IMAGE_LOCATION,respuesta[0])
+            crop_im.save( IMAGE_LOCATION_cropped)
+            color = palomita().color_mayoritario(IMAGE_LOCATION_cropped) ### Falta revisar!!! paloma mete un path, nosotros ya la matriz!!!!!
+            respuesta.append(color)
+            new_response.append(respuesta)
+            
+        print(new_response)
+        
+        ###Paloma colores
+        # recortar imagen -> pasar modelo -> devolver lista (bbox, clase, color)
+        #######
 
         #r = requests.post(RASA_MODEL_URL, json={"message": message, "data":str(response)})
         r = requests.post(RASA_MODEL_URL, json={"message": message})
-        objects = parametro_a_diccionario(imageToPredict.shape[0], imageToPredict.shape[1], response)
+        objects = parametro_a_diccionario(imageToPredict.shape[0], imageToPredict.shape[1], new_response) ## Añadir color 
         print(objects)
         for i in r.json():
             bot_message = i['text']
-        answer = createAnswer(objects, bot_message,labels_to_names)
+        answer = createAnswer(objects, bot_message,labels_to_names) ## me falta xq no sé que tiene.
         handleAnswer(engine, answer)
 
 
@@ -160,10 +176,11 @@ def parametro_a_diccionario(x_max,y_max,boxes_imagen):
             posicion=pos_y+" a la "+pos_x
         
         item = images.get(posicion)
-        images[posicion] = getItems(item,boxes_imagen[i][1])
+        images[posicion] = getItems(item,boxes_imagen[i][1],boxes_imagen[i][2])
     return images
 
 def createAnswer(items, position, labels_to_names):
+    print(items)
     answer = "No entiendo tu pregunta"
     objects = items.get(position)
     objectsString = getStringObjects(objects, labels_to_names)
@@ -196,7 +213,7 @@ def getStringObjects(objects, labels_to_names):
         item = labels_to_names.get(key)
         count = countObjects[key]
         stringObjects = stringObjects + " {} {}, ".format(count,getPluralOrSingular(item, count))
-        print(key, ":", countObjects[key])
+        print(key, ":", countObjects[key], 'key + cuntObjetos')
     return stringObjects
 
 def getPluralOrSingular(item, count):
@@ -205,12 +222,12 @@ def getPluralOrSingular(item, count):
         return objects[1]
     return objects[0]
 
-def getItems(item, value):
+def getItems(item, value,color):
     if(item == None):
         item = list()
-        item.append(value)
+        item.append([value, color])
         return item
-    item.append(value)
+    item.append([value, color])
     return item
 
 def crop_image(img_name,bbox_list):
@@ -238,3 +255,6 @@ if __name__ == '__main__':
 
     c.join()
     p.join()
+    
+    
+    
