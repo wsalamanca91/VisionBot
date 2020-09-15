@@ -27,9 +27,9 @@ from deteccion_colores import deteccion_colores
 
 RASA_MODEL_URL = 'http://localhost:5002/webhooks/rest/webhook'
 RETINA_NET_MODEL_URL = "/home/wilson/Documentos/TFM/retinaNet/Libraries/resnet50_csv_50.h5"
-LABELS_URL = "E:/tfm/VisionBot/files/categorias_catdef_todas.csv" ### cambbiar
+LABELS_URL = "/home/wilson/Documentos/TFM/files/categorias_catdef_todas.csv" ### cambbiar
 API_PREDICT = "http://8e19e885ce00.ngrok.io/predict"
-IMAGE_LOCATION = "E:/tfm/VisionBot/TestImage.jpg"
+IMAGE_LOCATION = "/home/wilson/Documentos/TFM/TestImage.jpg"
 IMAGE_LOCATION_cropped = "E:/tfm/VisionBot/TestImage_crop.jpg"
 
 def predictAPI(image):    
@@ -196,7 +196,7 @@ def createAnswer(items, position, labels_to_names, lastResponse, lastPosition):
         answer = "A la {} encontramos {}".format(position, objectsString)
         newResponse = True
     elif ((len(position) > 15) or 'adiós' in position or 'gracias' in position or 'hasta luego' in position or 'nos vemos' in position):
-        return position
+        return position, newResponse
     elif position == "color":
         answer = createColorAnswer(lastResponse, lastPosition)
     else:
